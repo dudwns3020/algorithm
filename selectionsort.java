@@ -1,19 +1,20 @@
-class selectionsort {
+class Main {
   public static void main(String[] args) {
     int arr[] = {8, 2, 31, 48, 7};
+    int last = arr.length;
+
     for(int i = 0; i < arr.length; i++) {
-      int large = 0;
-      for(int j = 0; j < arr.length - i; j++){
-        if(arr[j] > large){
-          large = arr[j];
+      int large = i;
+      for(int j = i + 1; j < arr.length; j++){
+        if(arr[i] > arr[j]){
+          int tmp = arr[j];
+          arr[j] = arr[i];
+          arr[i] = tmp;
         }
-      }
-      int tmp = large;
-      // large = arr[];
-      // arr[] = tmp;
-      }
-    for(int k = 0; k < arr.length; k++){
-      System.out.print(arr[k] + " ");
+      } 
+    }
+    for(int k : arr){
+      System.out.print(k + " ");
     }
   }
 }
