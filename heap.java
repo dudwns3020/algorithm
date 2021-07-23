@@ -1,4 +1,4 @@
-class heap {
+class Main {
   public static void main(String[] args) {
     int[] arr = {7, 9, 4, 8, 6, 3};
 
@@ -8,11 +8,17 @@ class heap {
     }
     System.out.println("");
 
-    for(int i = arr.length/2-1; i >= 0; i--){
-      heapify(arr, i, arr.length);
-    }
+    heapbuild(arr, arr.length);
     
-    System.out.println("AFTER");
+    System.out.println("AFTER heapfiy");
+    for(int result : arr) {
+      System.out.print(result + " ");
+    }
+    System.out.println("");
+
+    heapsort(arr, arr.length-1);
+
+    System.out.println("AFTER heapsort");
     for(int result : arr) {
       System.out.print(result + " ");
     }
@@ -41,5 +47,19 @@ class heap {
       heapify(a, p, s);
     }
   }
-   
+
+   static void heapbuild(int a[], int n){
+    for(int i = n/2; i >= 0; i--){
+      heapify(a, i, n);
+    }
+  }
+
+  static void heapsort(int a[], int n){
+    for(int i = n; i>0; i--){
+      int tmp = a[0];
+      a[0] = a[i];
+      a[i] = tmp;
+      heapify(a, 0, i-1);
+    }
+  }
 }
