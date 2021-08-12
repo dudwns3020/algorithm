@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Binarytree {
+class BinarySearchTree {
 
     class Node {
         int data;
@@ -11,22 +11,38 @@ public class Binarytree {
             this.data = data;
         }
     }
-
-    static Node search(Node node, int key){
-        while(node != null) {
-            if(key == node.data) {
-                return node;
-            }
-            if(key < node.data) {
-                return search(node.left, key);
-            }
-            else {
-                return search(node.right, key);
-            }
+    Node node;
+    public Node search(Node node, int key){
+        if(node == null || node.data == key) {
+            return key;
         }
-        return null;
+        if(node.data > key) {
+            return search(node.right, key);
+        }
+        else {
+            return search(node.left, key);
+        }
     }
-
+    public void insert(int data) {
+        node = insert(node, data);
+    }
+    public Node insert(Node node, int data) {
+        if(node == null) {
+            node = new Node(data);
+            return node;
+        }
+        if(data < node.data) {
+            node.left = insert(node.left, data);
+        }
+        else if (data > node.data) {
+            node.right = insert(node.right, data);
+        }
+        return node;
+    }
+    
+}
+    
+public class Binarytree {
     public static void main(String[] args) {
         Binarytree t = new Binarytree();
     }
