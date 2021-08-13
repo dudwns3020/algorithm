@@ -39,7 +39,25 @@ class BinarySearchTree {
         }
         return node;
     }
-    
+    public void delete(int data) {
+        node = delete(node, data);
+    }
+    public Node delete(Node node, int data) {
+        if(node == null){
+            return node;
+        }
+        if(data < node.data) {
+            node.left = delete(node.left, data);
+        }
+        else if(data > node.data) {
+            node.right = delete(node.right, data);
+        }
+        else {
+            
+        }
+        return node;
+    }
+
 }
     
 public class Binarytree {
