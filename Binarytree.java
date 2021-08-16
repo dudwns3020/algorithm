@@ -53,7 +53,15 @@ class BinarySearchTree {
             node.right = delete(node.right, data);
         }
         else {
-            
+            if(node.right == null && node.left == null) {
+                return null;
+            }
+            else if(node.right == null) {
+                return node.left;
+            }
+            else if(node.left == null) {
+                return node.right;
+            }
         }
         return node;
     }
