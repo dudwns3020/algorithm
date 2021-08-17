@@ -62,9 +62,21 @@ class BinarySearchTree {
             else if(node.left == null) {
                 return node.right;
             }
+
+            node.data = min(node.data);
+            node.right = delete(node.right, node.data)
         }
         return node;
     }
+    public Node min(Node node) {
+        int m = node.data;
+        while(node.left != null) {
+            m = node.left.data;
+            node = node.left;
+        }
+        return min;
+    }
+
 
 }
     
