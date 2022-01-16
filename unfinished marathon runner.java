@@ -1,4 +1,6 @@
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 class Solution {
     public String solution(String[] participant, String[] completion) {
@@ -7,14 +9,21 @@ class Solution {
         //answer      : 완주못한 선수 이름
         //이름은 1~20자, 동명이인 존재가능
         String answer = "";
-        HashMap<Integer, String> hm = new HashMap<Integer, String>();
+        HashMap<String, Integer> hm = new HashMap<String, Integer>();
         
         for(String p : participant) {
-            hm.put(p, 1);            
-        }        
-        for(String c : completion) {
-            hm.put(completion, hm.get(c)-1);
+            hm.put(p, hm.getOrDefault(p, 0) + 1);
         }
+            
+        for(String c : completion) {            
+            hm.put(c, hm.get(c) - 1);
+        }
+        
+         for(String key : hm.keySet()) {
+             if(hm.get(key) == 1) {
+                 answer = key;
+             }
+        }        
         return answer;
     }
 }
