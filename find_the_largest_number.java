@@ -3,32 +3,26 @@ import java.util.*;
 class Solution {
     public String solution(int[] numbers) {
         String answer = "";
-        String[] first = new String[numbers.length];        
-
-        int len = 1;
-
-        for(int i = numbers.length; i > 0; i--) {
-            len *= i;
-        }
+        
+        String[] largest = new String[numbers.length];       
         
         for(int i = 0; i < numbers.length; i++) {
-            first[i]  = String.valueOf(numbers[i]);
+            largest[i]  = String.valueOf(numbers[i]);
         }
         
-        String[] second = new String[len];
-
-        /*
-        for(int i = 0; i < numbers.length; i++) {
-            for(int j = 0; j < numbers.length; j++){
-                if(i != j) {
-                    second[i] += first[j];
-                }
+        Arrays.sort(largest, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return (s2+s1).compareTo(s1+s2);
             }
-        }
-        */
+        });
         
-        for(int i = 0; i < len; i++) {
-            System.out.println(second[i]);
+        if(largest[0].equals("0")) {
+            return "0";
+        }
+                
+        for(String str : largest) {
+            answer += str;
         }
         
         return answer;
