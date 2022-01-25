@@ -1,0 +1,48 @@
+- Arrays.copyOfRange(arr, start, end);
+arr(원본 배열)를 start(원본 배열의 복사 시작 인덱스)부터 end(원본 배역의 복사 마지막 인덱스)까지 복사
+
+- Arrays.copyOf(arr, n);
+arr(원본 배열)를 n(특정 길이)만큼 복사하여 반환, 새로운 배열이 원본배열보다 길면 나머지는 배열요소의 기본값으로 복사
+
+배열요소의 타입		기본값
+char			'\u0000'
+byte, short, int		0
+long			0L
+float			0.0F
+double			0.0 또는 0.0D
+boolean			false
+배열, 인스턴스 등 		nullchar	'\u0000'
+byte, short, int		0
+long			0L
+float			0.0F
+double			0.0 또는 0.0D
+boolean			false
+배열, 인스턴스 등 		null
+
+- Arrays.sort(arr);
+arr(원본 배열)를 오름차순으로 정렬
+
+- arr.length
+배열의 길이
+
+- arr.length()
+문자열의 길이
+
+- arr.size()
+컬렉션 프레임워크 타입의 길이
+
+- String(Integer, Double).valueOf(obj);
+obj(원본 배열, 변수)을 String(Integer, Double)형태로 변환
+null을 문자열로 처리
+
+- obj.toString();
+obj(변수)를 String형태로 변환
+null을 입력하면 Null PointerException(NPE)을 발생
+
+- compare(a, b)
+두 개체의 값을 비교
+다중 비교 . 무언가를 정렬하는 여러 가지 방법을 제공(sort(),  제어 할 수없는 클레스에 대한 비교, 전략패턴)
+
+- a.compareTo(b)
+값을 비교하고 값이보다 작거나 같거나 큰지 여부를 나타내는 int를 반환
+

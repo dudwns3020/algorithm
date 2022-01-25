@@ -1,0 +1,41 @@
+HashMap<String, Integer> hashmap = new HashMap<String, Integer>();
+
+- void clear();
+HashMap의 모든 키 삭제
+
+- hashmap.isEmpty();
+HashMap이 비어있으면 ture 리턴
+
+- hashmap.put(Object key, Object value);
+key와 value를 매핑하여 HashMap에 저장
+
+- hashmap.get(Object key);
+key에 맵핑되는 value을 리턴하거나 값이 없으면 null 리턴
+
+- hashmap.remove(Object key);
+key와 key에 맵핑되는 value를 HashMap에서 삭제
+
+- hashmap.replace(Object key, Object value);
+key에 맵핑되는 value를 삭제하고 전달된 value로 교체한다
+
+- hashmap.keySet();
+HashMap에 저장된 key들을 Set 객체로 리턴
+
+- hashmap.values();
+HashMap에 저장된 key들을 Collection 객체로 리턴
+
+- entrySet();
+HashMap에 저장된 key와 value들을 객체로 리턴
+
+- hashmap.containsKey(Object key);
+HashMap에 인자로 전달된 key가 존재하면 true를 리턴하고 그렇지 않으면 false를 리턴
+
+- hashmap.containsValue(Object value);
+HashMap에 인자로 전달된 value가 존재하면 true를 리턴하고 그렇지 않으면 false를 리턴
+
+- hashmap.getOrDefault(Object key, V DefaultValue);
+key가 존재하면 value를 리턴하고 없으면 기본값을 리턴
+ex) hashmap.put(key, hashmap.getOrDefault(key, 0) + 1);
+     key의 value가 존재할때마다 value에 1을 더하여 value 개수를 표시
+
+
