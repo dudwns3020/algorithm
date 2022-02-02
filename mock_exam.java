@@ -22,15 +22,30 @@ class Solution {
             }
         }
         
-        int hs = score[0];
+        int hs = 0;
         for(int j = 0; j < s; j++) {            
             if(hs < score [j]) {
                 hs = score[j];
             }
         }       
        
-        ArrayList<Integer> list = new ArrayList<>();
+        int hscore = 0;
+        for(int j = 0; j < s; j++) {            
+            if (score[j] == hs) {
+                hscore += 1;
+            }
+        }
+        
+        answer = new int[hscore];
+        int alen = 0;
+        for(int j = 0; j < s; j++) {            
+            if(score[j] == hs) {
+                answer[alen] = j+1;
+                alen++;
+            }
+        }        
         
         return answer;
     }
 }
+// 런타임 에러
