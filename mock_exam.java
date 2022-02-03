@@ -3,49 +3,50 @@ import java.util.*;
 class Solution {
     public int[] solution(int[] answers) {
         int[] answer = {};
-        
-        int s = 3;
-        int[] score = new int[s];
+
+        int[] score = new int[3];
         int[] s1 = {1, 2, 3, 4, 5};
         int[] s2 = {2, 1, 2, 3, 2, 4, 2, 5};
         int[] s3 = {3, 3, 1, 1, 2, 2, 4, 4, 5, 5};
         
         for(int i = 0; i < answers.length; i++) {
-            if(s1[i] == answers[i]) {
-                score[0] += 1;
+            if(s1[i%s1.length] == answers[i]) {
+                score[0]++;
             }        
-            if(s2[i] == answers[i%5]) {
-                score[1] += 1;
+            if(s2[i%s2.length] == answers[i]) {
+                score[1]++;
             }            
-            if(s3[i] == answers[i%8]) {
-                score[2] += 1;
+            if(s3[i%s3.length] == answers[i]) {
+                score[2]++;
             }
         }
         
-        int hs = 0;
-        for(int j = 0; j < s; j++) {            
-            if(hs < score [j]) {
-                hs = score[j];
+        int max = 0;
+        
+        for(int i = 0; i < 3; i++) {            
+            if(max <= score [i]) {
+                max = score[i];
             }
         }       
-       
+        
+
         int hscore = 0;
-        for(int j = 0; j < s; j++) {            
-            if (score[j] == hs) {
-                hscore += 1;
+        for(int i = 0; i < 3; i++) {            
+            if (score[i] == max) {
+                score[i] = -1;
+                hscore++;
             }
         }
         
         answer = new int[hscore];
+        
         int alen = 0;
-        for(int j = 0; j < s; j++) {            
-            if(score[j] == hs) {
-                answer[alen] = j+1;
-                alen++;
+        for(int i = 0; i < 3; i++) {            
+            if(score[i] == -1) {
+                answer[alen++] = i+1;
             }
         }        
         
         return answer;
     }
 }
-// 런타임 에러
