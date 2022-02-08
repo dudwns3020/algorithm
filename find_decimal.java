@@ -1,39 +1,37 @@
 class Solution {
     public int solution(String numbers) {
         int answer = 0;
-         
-        String[] paper = new String[numbers.length()];
-
+        
+        String[] piece = new String[numbers.length()];
+        /*
         for(int i = 0; i < numbers.length(); i++) {
-            paper[i] = numbers.substring(i, i+1);
+            piece[i] = Integer.parseInt(numbers.substring(i, i+1));
         }
+        */
+        int r = piece.length;
+        String[] output = new String[r];
+        boolean[] visited = new boolean[r];
+        permutation(piece, output, visited, 0, r);
         
-        String[] sum = new String[numbers.length() * numbers.length()];
-        int cnt = 0;
-        for(int i = 0; i < numbers.length(); i++) { 
-            for(int j = 0; j < numbers.length(); j++) { 
-                if(i == j) {
-                    sum[cnt++] = paper[i];
-                }
-                else {
-                    sum[cnt++] = paper[i] + paper[j];
-                }
-            }
-        } // 101(X)
-        
-        for(String a : sum) {
-            System.out.println(a);
-        }
-        
-        /*int[] piece = new int[sum.length];
-        
-        for(int i = 0; i < sum.length; i++) {
-            piece[i] = Integer.parseInt(sum[i]);
-        }
-        
-        for(int a : piece) {
-            System.out.println(a);
-        }*/
         return answer;
     }
+    
+    public static void permutation(String[] arr, String[] output, boolean[] visited, int depth, int r) {
+        if(depth == r) {
+            for(int i = 0; i < r; i++) {
+                System.out.print(output[i]);
+            }
+            System.out.println();
+            return;
+        }
+        
+        for(int i = 0; i < arr.length; i++) {
+            if(!visited[i]) {
+            visited[i] = true;
+            output[depth] = arr[i];
+            permutation(arr, output, visited, depth+1, r);
+            visited[i] = false;
+            }
+        }
+    }    
 }
