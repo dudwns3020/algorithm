@@ -4,20 +4,22 @@ class Solution {
     public int[] solution(int[] progresses, int[] speeds) {
         int[] answer = {};
         
-        Queue<Integer> q = new LinkedList<>();
+        Queue<Integer> queue = new LinkedList<>();
         
         for(int i = 0; i < progresses.length; i++) {
-            while(progresses[i] < 100) {
-                progresses[i] += speeds[i];
-                if(progresses[i] >= 100) {
-                    q.add(progresses[i]);
-                }
-            }
+            queue.add((int)(Math.ceil((100.0 - progresses[i]) / speeds[i])));
         }
 
-        for(int a: q) {
-            System.out.println(a);
+        while(!queue.isEmpty()) {
+            int day = queue.poll();
+            int cnt = 1;
+            if(!queue.isEmpty() && day >= queue.peek()) {
+                queue.poll();
+                cnt++;
+            }
+            
         }
+  
         return answer;
     }
 }
