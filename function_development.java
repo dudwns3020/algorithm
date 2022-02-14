@@ -9,17 +9,24 @@ class Solution {
         for(int i = 0; i < progresses.length; i++) {
             queue.add((int)(Math.ceil((100.0 - progresses[i]) / speeds[i])));
         }
-
+        
+         ArrayList<Integer> list = new ArrayList<>();
+        
         while(!queue.isEmpty()) {
             int day = queue.poll();
             int cnt = 1;
-            if(!queue.isEmpty() && day >= queue.peek()) {
+            while(!queue.isEmpty() && day >= queue.peek()) {
                 queue.poll();
                 cnt++;
             }
-            
+            list.add(cnt);
         }
-  
+        
+        answer = new int[list.size()];
+        for(int i = 0; i < list.size(); i++) {
+            answer[i] = list.get(i);
+        }
+        
         return answer;
     }
 }
