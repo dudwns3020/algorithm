@@ -1,30 +1,28 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 class Solution {
     public int solution(int[] priorities, int location) {
         int answer = 0;
+
+        Queue<Integer> queue = new LinkedList<>();        
+        for(int a: priorities) {
+            queue.add(a);
+        }
         
-        for(int i = 0; i < priorities.length; i++) {
-            if(priorities[0] <= priorities[i]) {
-                shift(priorities);
-                location -= 1;
-                if(location < 0) {
-                    location = priorities.length - 1;
+        for(int a: queue) {
+            for(int b: priorities) {
+                if(queue.peek() < a) {
+                   queue.add(queue.poll());
+                  break;
                 }
             }
-            else {
-                break;
-            }
         }
         
-        answer = location + 1;
+        for(int c: queue) {
+            System.out.print(c);
+        }
         
         return answer;
-    }
-    
-    void shift(int[] a) {
-        int temp = a[0];
-        for(int i = 0; i < a.length - 1; i++) {
-            a[i] = a[i+1];
-        }
-        a[a.length - 1] = temp;
     }
 }
