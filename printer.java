@@ -1,26 +1,26 @@
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.PriorityQueue;
+import java.util.Collections;
 
 class Solution {
     public int solution(int[] priorities, int location) {
         int answer = 0;
 
-        Queue<Integer> queue = new LinkedList<>();        
+        PriorityQueue<Integer> queue = new PriorityQueue<>(Collections.reverseOrder());
+        
         for(int a: priorities) {
             queue.add(a);
         }
         
-        for(int a: queue) {
-            for(int b: priorities) {
-                if(queue.peek() < a) {
-                   queue.add(queue.poll());
-                  break;
-                }
+        while(!queue.isEmpty()){
+            for(int i = 0; i < priorities.length; i++) {
+                if(priorities[i] == queue.peek()) {
+                    queue.poll();
+                    answer++;
+                    if(i == location) {
+                        return answer;
+                    }
+                }            
             }
-        }
-        
-        for(int c: queue) {
-            System.out.print(c);
         }
         
         return answer;
