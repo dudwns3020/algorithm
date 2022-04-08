@@ -9,23 +9,24 @@ class Solution {
         return answer;
     }
     
-    public void dfs(String begin, String target, String[] words, boolean[] visited) {
-        boolean visieted = true;
-        
-        int cnt = 0;
-        
-        for(int i = 0; i < begin.length() ; i++) {
-            if(begin.charAt(i) == comparsion.charAt(i)) {
-                cnt++;
+    public int dfs(String begin, String target, String[] words, boolean[] visited) {
+       int no = 0;
+        for(int i = 0; i < words.length ; i++) {
+            int cnt = 0;
+            for(int j = 0; j < begin.length() ; j++) {
+                if(begin.charAt(j) == words[i].charAt(j)) {
+                    cnt++;
+                }
             }
-            System.out.println(cnt);
+            if(cnt == begin.length() - 1) {
+                no++;
+                begin = words[i];
+                if(begin == target) {
+                }
+                visited[i] = true;
+                dfs(begin, target, words, visited);
+            }
         }
-
-        
-        // for(int i = 0; i < words.length; i++) {
-        //     if(cnt == begin.length() - 1) {
-        //         dfs(begin, target, words, visited);
-        //     }            
-        // }
+        return no;
     }
 }
