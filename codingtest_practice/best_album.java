@@ -13,26 +13,32 @@ class Solution {
         List<String> genresKeyList = new ArrayList<>(genresList.keySet());
         genresKeyList.sort((s1, s2) -> genresList.get(s2).compareTo(genresList.get(s1)));
         
-        List<Integer> answerList = new ArrayList<>();        
-        for(String s: genresKeyList) {
-            HashMap<Integer, Integer> playsList = new HashMap<>();
+        List<Integer> answerList = new ArrayList<>();
+        
+        for(int i = 0; i < genresKeyList.size(); i++) {
+            String g = genresKeyList.get(i);
             
-            for(int i = 0; i < genres.length; i++) {
-                if(s.equals(genres[i])) {
-                    playsList.put(i, plays[i]);
+            int max = 0;
+            int firstIdx = -1;
+            for(int j = 0; j < genres.length; j++) {
+                if(g.equals(genres[j]) && max < plays[j]) {
+                    max = plays[j];
+                    firstIdx = j;
                 }
             }
             
-            List<Integer> keyList = new ArrayList<>(playsList.keySet());
-            keyList.sort((s1, s2) -> playsList.get(s2).compareTo(playsList.get(s1)));
-            
-            int j = 0;
-            for(int c : keyList) {
-                if(j > 1) {
-                    break;
+            max = 0;
+            int secondIdx = -1;
+            for(int j = 0; j < genres.length; j++) {
+                if(g.equals(genres[j]) && max < plays[j] && j != firstIdx) { 
+                    max = plays[j];
+                    secondIdx = j;
                 }
-                answerList.add(c);
-                j++;
+            }
+            
+            answerList.add(firstIdx);
+            if(secondIdx >= 0) {
+                answerList.add(secondIdx);
             }
         }
         
