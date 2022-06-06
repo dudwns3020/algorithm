@@ -1,22 +1,26 @@
 import java.util.*;
 
 class Solution {
+    
+    ArrayList<String> answer;
+    
     public String[] solution(String[][] tickets) {
-        String[] answer = {};
+        answer = new ArrayList<>();
         boolean[] visited = new boolean[tickets.length];   
-        dfs(0, "ICN", visited, tickets);
+        dfs(0, "ICN", "ICN", visited, tickets);
 
-        return answer;
+        return answer.get(0).split(" ");
     }
     
-    public void dfs(int c, String s, boolean[] visited, String[][] tickets) {
+    public void dfs(int c, String s, String r, boolean[] visited, String[][] tickets) {
         if(c == tickets.length) {
+            answer.add(r);
             return;
         }
         for(int i = 0; i < tickets.length; i++) {
             if(!visited[i] && s.equals(tickets[i][0])) {
                 visited[i] = true;
-                dfs(c, tickets[i][1], visited, tickets);
+                dfs(c + 1, tickets[i][1], r + " " + tickets[i][1], visited, tickets);
                 visited[i] = false;    
             }
         }
